@@ -4,7 +4,6 @@
 #include <time.h>
 #include <unistd.h>
 
-// TODO: take apps from arguments.
 // TODO: generate sleep duration based on order of apps.
 
 int randomizeIndex(int current, int total) {
