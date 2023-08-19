@@ -14,4 +14,4 @@ int randomizeIndex(int current, int total) {
 }
 
 // TODO: we need to also mix up prioritizing randomly.
-int prioritizeSleepTime(int index, int max) { return max / index + 1; }
+int prioritizeSleepTime(int index, int max) { return max / (index + 1); }
