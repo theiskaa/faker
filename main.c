@@ -6,23 +6,30 @@
 
 // TODO: take apps from arguments.
 // TODO: generate sleep duration based on order of apps.
-char *apps[] = {"Alacritty", "Safari", "Discord"};
 
-int randomizeIndex(int current) {
+int randomizeIndex(int current, int total) {
+  srand(time(NULL));
+
   int index;
   do {
-    index = rand() % (sizeof(apps) / sizeof(apps[0]));
+    index = rand() % total;
   } while (index == current);
 
   return index;
 }
 
-int main() {
-  srand(time(NULL));
+int main(int argc, char *argv[]) {
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <app-1> <app-2> ... <app-N>\n", argv[0]);
+    return 1;
+  }
+
+  int length = argc - 1;
+  char **apps = &argv[1];
 
   int previous = 0;
   while (1) {
-    int index = randomizeIndex(previous);
+    int index = randomizeIndex(previous, length);
     previous = index;
 
     char command[256];
