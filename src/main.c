@@ -38,5 +38,6 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  srand(time(NULL));
   return runCommand(argc, argv);
 }

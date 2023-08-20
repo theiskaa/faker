@@ -3,8 +3,6 @@
 #include <time.h>
 
 int randomizeIndex(int current, int total) {
-  srand(time(NULL));
-
   int index;
   do {
     index = rand() % total;
@@ -13,5 +11,14 @@ int randomizeIndex(int current, int total) {
   return index;
 }
 
-// TODO: we need to also mix up prioritizing randomly.
-int prioritizeSleepTime(int index, int max) { return max / (index + 1); }
+// A sleep time prioritizer/mixer that takes index and maximum value
+// of an one-time sleep time, and gets a "random" value, based on
+// range of low and high values.
+//
+// • max / (index + 1) ... (max / (max / (index + 2)))
+//
+int prioritizeSleepTime(int index, int max) {
+  int low = max / (index + 2);
+  int high = max / (index + 1);
+  return (rand() % (high - low + 1)) + low;
+}
